@@ -5,6 +5,9 @@ This dashboard looks like an usual Kanban desk and presents a column for each st
 You can route to any issue just by clicking on the issue card  
 It adds a new item to the top menu as well  
 
+## Installation:  
+Just follow Redmine plugin installation steps (it doesn't require migration step)
+
 *if you want to change Redmine root page to this dashboard, you should replace string*
 ```ruby
 "root :to => 'welcome#index', :as => 'home'"
