@@ -5,6 +5,6 @@ Redmine::Plugin.register :dashboard do
   version '0.0.2'
   url ''
   author_url 'https://github.com/akpaevj'
-  menu :top_menu, :dashboard, { controller: 'dashboard', action: 'index' }, caption: 'Панель задач', first: true
+  menu :top_menu, :dashboard, { controller: 'dashboard', action: 'index' }, caption: :top_menu_item_title, first: true
   settings :default => {:empty => true}, :partial => 'settings/dashboard_settings'
 end

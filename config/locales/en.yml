@@ -1,3 +1,4 @@
-# English strings go here for Rails i18n
 en:
-  # my_label: "My label"
+  top_menu_item_title: "Dashboard"
+  settings_header: "Colors of the status column header"
+  executor_not_set: "Not set"
