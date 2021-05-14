@@ -5,13 +5,11 @@ This dashboard looks like an usual Kanban desk and presents a column for each st
 You can route to any issue just by clicking on the issue card
 It adds a new item to the top menu as well  
 
-* if you want to change Redmine root page to this dashboard, 
-you should replace string  
+*if you want to change Redmine root page to this dashboard, you should replace string*
 ```ruby
 "root :to => 'welcome#index', :as => 'home'"
 ```
-at Redmine default config file by path "config/routes.rb"
-to 
+*at Redmine default config file by path "config/routes.rb" to*
 ```ruby
 "root :to => 'dashboard#index', :as => 'home'"
 ```
