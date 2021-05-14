@@ -1,0 +1,20 @@
+<table>
+  <thead>
+    <tr>
+      <td colspan="2">Цвета заголовков колонок статусов</td>
+    </tr>
+  </thead>
+  <tbody>
+  <% IssueStatus.sorted().each do |status| %>
+    <% if !status.is_closed %>
+      <% property_name = "status_color_" + status.id.to_s %>
+      <tr>
+        <th> <%= status.name %> </th>
+        <td>
+          <input type="color" id="settings_<%= property_name %>" value="<%= settings[property_name] %>" name="settings[<%= property_name %>]">
+        </td>
+      </tr>
+    <% end %>
+  <% end %>  
+  </tbody>
+</table>
