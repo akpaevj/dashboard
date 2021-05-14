@@ -1,7 +1,7 @@
 <table>
   <thead>
     <tr>
-      <td colspan="2"> <%=l :settings_header %> </td>
+      <th colspan="2"> <%=l :settings_header %> </td>
     </tr>
   </thead>
   <tbody>
@@ -9,7 +9,7 @@
     <% if !status.is_closed %>
       <% property_name = "status_color_" + status.id.to_s %>
       <tr>
-        <th> <%= status.name %> </th>
+        <td> <%= status.name %> </th>
         <td>
           <input type="color" id="settings_<%= property_name %>" value="<%= settings[property_name] %>" name="settings[<%= property_name %>]">
         </td>
