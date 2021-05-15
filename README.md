@@ -10,11 +10,11 @@ Just follow Redmine plugin installation steps (it doesn't require migration step
 
 *if you want to change Redmine root page to this dashboard, you should replace string*
 ```ruby
-"root :to => 'welcome#index', :as => 'home'"
+root :to => 'welcome#index', :as => 'home'
 ```
 *at Redmine default config file by path "config/routes.rb" to*
 ```ruby
-"root :to => 'dashboard#index', :as => 'home'"
+root :to => 'dashboard#index', :as => 'home'
 ```
 
 ![Alt text](/screenshots/screen1.png)
