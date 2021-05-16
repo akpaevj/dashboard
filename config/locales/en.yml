@@ -2,3 +2,4 @@ en:
   top_menu_item_title: "Dashboard"
   settings_header: "Colors of the status column header"
   executor_not_set: "Not set"
+  label_all: "All"
