@@ -12,7 +12,7 @@
 			</div>
 			<div class="status_column_issues">
 				<% status["issues"].each do |issue| %>
-					<div dragable class="issue_card" data-id="<%= issue['id'] %>" onclick="goToIssue(<%= issue['id'] %>)">
+					<div draggable="true" class="issue_card" data-status="<%= status['id'] %>" data-id="<%= issue['id'] %>" onclick="goToIssue(<%= issue['id'] %>)">
 						<span class="issue_card_title"> <%= issue["subject"] %> </span>
 						<span class="issue_card_author"><i class="bi bi-person"></i> <%= issue["author"] %> </span>
 						<% if issue["executor"] == '' || issue["executor"].nil? %>

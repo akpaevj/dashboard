@@ -19,7 +19,7 @@
     display: flex;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    background-color: lightgreen;
+    background-color: rgb(169, 144, 238);
     width: 100%;
     height: 50px;
     align-items: center;
@@ -40,7 +40,7 @@
 
 .issue_card {
     display: flex;
-    width: 95%;
+    width: 96%;
     border-radius: 5px;
     height: auto;
     min-height: 50px;
