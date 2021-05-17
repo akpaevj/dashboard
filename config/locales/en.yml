@@ -1,5 +1,6 @@
 en:
   top_menu_item_title: "Dashboard"
-  settings_header: "Colors of the status column header"
+  settings_header_statuses: "Colors of the status column header"
+  settings_header_projects: "Project colors"
   executor_not_set: "Not set"
   label_all: "All"

@@ -1,5 +1,6 @@
 ru:
   top_menu_item_title: "Панель задач"
-  settings_header: "Цвета заголовков колонок статусов"
+  settings_header_statuses: "Цвета заголовков колонок статусов"
+  settings_header_projects: "Цвета проектов"
   executor_not_set: "Не установлен"
   label_all: "Все"
