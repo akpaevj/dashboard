@@ -15,6 +15,8 @@ function goToIssue(id) {
 }
 
 function init() {
+    document.querySelector('#main-menu').remove();
+
     document.querySelector('[name=project]').addEventListener('change', function(e) {
         if (this.value == "-1") {
             location.search = "";
