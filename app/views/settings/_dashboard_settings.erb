@@ -1,10 +1,8 @@
 <table>
-  <thead>
-    <tr>
-      <th colspan="2"> <%=l :settings_header %> </td>
-    </tr>
-  </thead>
   <tbody>
+  <tr>
+    <th colspan="2"> <%=l :settings_header_statuses %> </td>
+  </tr>
   <% IssueStatus.sorted().each do |status| %>
     <% if !status.is_closed %>
       <% property_name = "status_color_" + status.id.to_s %>
@@ -15,6 +13,18 @@
         </td>
       </tr>
     <% end %>
+  <% end %>
+  <tr>
+    <th colspan="2"> <%=l :settings_header_projects %> </td>
+  </tr>
+  <% Project.all.each do |project| %>
+    <% property_name = "project_color_" + project.id.to_s %>
+    <tr>
+      <td> <%= project.name %> </th>
+      <td>
+        <input type="color" id="settings_<%= property_name %>" value="<%= settings[property_name] %>" name="settings[<%= property_name %>]">
+      </td>
+    </tr>
   <% end %>  
   </tbody>
 </table>

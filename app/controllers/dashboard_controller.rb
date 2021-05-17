@@ -30,6 +30,7 @@ def getProjects(selected_project_id = -1)
     projects.push({
       "id" => project.id,
       "name" => project.name,
+      "color" => Setting.plugin_dashboard["project_color_" + project.id.to_s],
       "selected" => selected
     })
   end
@@ -52,6 +53,9 @@ def getData(project_id = -1)
       "id" => issue.id,
       "subject" => issue.subject,
       "status_id" => issue.status.id,
+      "project" => issue.project.name,
+      "project_id" => issue.project.id,
+      "created_at" => issue.start_date,
       "author" => issue.author.name(User::USER_FORMATS[:firstname_lastname]),
       "executor" => executor
     })

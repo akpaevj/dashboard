@@ -98,3 +98,21 @@
 .select_project {
     margin-left: 10px;
 }
+
+.issue_card_header {
+    display: flex;
+    padding-top: 5px;
+    align-items: center;
+    width: 100%;
+}
+
+.issue_card_header_project {
+    margin-left: auto;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-right: 10px;
+    border-radius: 15px;
+    color: white;
+}

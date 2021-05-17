@@ -21,6 +21,10 @@
 			<div class="status_column_issues">
 				<% status["issues"].each do |issue| %>
 					<div draggable="true" class="issue_card" data-status="<%= status['id'] %>" data-id="<%= issue['id'] %>" onclick="goToIssue(<%= issue['id'] %>)">
+						<div class="issue_card_header">
+							<span class="issue_card_header_date"><%= issue["created_at"] %></span>
+							<div class="issue_card_header_project" style="background-color: <%= @projects[issue['project_id']]['color'] %>"><%= issue["project"] %></div>
+						</div>
 						<span class="issue_card_title"> <%= issue["subject"] %> </span>
 						<span class="issue_card_author"><i class="bi bi-person"></i> <%= issue["author"] %> </span>
 						<% if issue["executor"] == '' || issue["executor"].nil? %>
