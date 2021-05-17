@@ -2,5 +2,7 @@ en:
   top_menu_item_title: "Dashboard"
   settings_header_statuses: "Colors of the status column header"
   settings_header_projects: "Project colors"
+  settings_header_other: "Other"
+  settings_enable_drag_and_drop: 'Enable "drag and drop" status changing'
   executor_not_set: "Not set"
   label_all: "All"

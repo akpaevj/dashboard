@@ -10,6 +10,7 @@ class DashboardController < ApplicationController
     @statuses = getData(@selected_project_id)
     @projects = getProjects(@selected_project_id)
   end
+  
 end
 
 private
