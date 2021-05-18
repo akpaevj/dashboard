@@ -8,30 +8,34 @@
 <label class="select_project"> <%=l :field_project %>
   <select name="project">
   <% @projects.each do |project| %>
-	<option <%= project["selected"] %> value="<%= project['id'] %>"><%= project["name"] %></option>
+	<% if project[:id].to_s == @selected_project_id.to_s %>
+		<option selected value="<%= project[:id] %>"><%= project[:name] %></option>
+	<% else %>
+		<option value="<%= project[:id] %>"><%= project[:name] %></option>
+	<% end %>
   <% end %>
   </select>
 </label>
 
 <div class="issues_container">
 	<% @statuses.each do |status| %>
-		<div class="status_column" data-id="<%= status['id'] %>">
-			<div class="status_column_header" style="border-bottom-color: <%= status["color"] %>">
-				<span> <%= status["name"] %> </span>
+		<div class="status_column" data-id="<%= status[:id] %>">
+			<div class="status_column_header" style="border-bottom-color: <%= status[:color] %>">
+				<span> <%= status[:name] %> </span>
 			</div>
 			<div class="status_column_issues">
-				<% status["issues"].each do |issue| %>
-					<div class="issue_card" data-status="<%= status['id'] %>" data-id="<%= issue['id'] %>" onclick="goToIssue(<%= issue['id'] %>)">
+				<% @issues.select {|issue| issue[:status_id] == status[:id] }.each do |issue| %>
+					<div class="issue_card" data-status="<%= status[:id] %>" data-id="<%= issue[:id] %>" onclick="goToIssue(<%= issue[:id] %>)">
 						<div class="issue_card_header">
-							<span class="issue_card_header_date"><%= issue["created_at"] %></span>
-							<div class="issue_card_header_project" style="background-color: <%= @projects[issue['project_id']]['color'] %>"><%= issue["project"] %></div>
+							<span class="issue_card_header_date"><%= issue[:created_at] %></span>
+							<div class="issue_card_header_project" style="background-color: <%= @projects.select {|item| item[:id] == issue[:project].id }[0][:color] %>"><%= issue[:project].name %></div>
 						</div>
-						<span class="issue_card_title"> <%= issue["subject"] %> </span>
-						<span class="issue_card_author"><i class="bi bi-person"></i> <%= issue["author"] %> </span>
-						<% if issue["executor"] == '' || issue["executor"].nil? %>
+						<span class="issue_card_title"> <%= issue[:subject] %> </span>
+						<span class="issue_card_author"><i class="bi bi-person"></i> <%= issue[:author] %> </span>
+						<% if issue[:executor] == '' || issue[:executor].nil? %>
 							<span class="issue_card_executor_not_set"><i class="bi bi-hammer"></i> <%=l :executor_not_set %></span>
 						<% else %>
-							<span class="issue_card_executor"><i class="bi bi-hammer"></i> <%= issue["executor"] %> </span>
+							<span class="issue_card_executor"><i class="bi bi-hammer"></i> <%= issue[:executor] %> </span>
 						<% end %>
 					</div>
 				<% end %>
