@@ -7,69 +7,54 @@ class DashboardController < ApplicationController
       @selected_project_id = -1
     end
 
-    @statuses = getData(@selected_project_id)
-    @projects = getProjects(@selected_project_id)
+    @statuses = getStatuses()
+    @projects = getProjects()
+    @issues = getIssues(@selected_project_id)
   end
-  
-end
 
-private
+  private
 
-def getProjects(selected_project_id = -1)
-  projects = []
-  projects.push({
-      "id" => -1,
-      "name" => l(:label_all)
+  def getStatuses
+    IssueStatus.sorted().where('is_closed = false').map { |item| {
+      :id => item.id,
+      :name => item.name,
+      :color => Setting.plugin_dashboard["status_color_" + item.id.to_s]
+      }
+    }
+  end
+
+  def getProjects(project_id = -1)
+    items = []
+
+    items.push({
+      :id => -1,
+      :name => l(:label_all),
+      :color => nil
     })
 
-  for project in Project.visible() do
-    selected = ""
-    if selected_project_id.to_s == project.id.to_s
-      selected = "selected"
-    end
-    
-    projects.push({
-      "id" => project.id,
-      "name" => project.name,
-      "color" => Setting.plugin_dashboard["project_color_" + project.id.to_s],
-      "selected" => selected
-    })
-  end
-  return projects
-end
-
-def getData(project_id = -1)
-  issues = []
-  for issue in Issue.visible() do 
-    if project_id != -1 && issue.project_id.to_s != project_id.to_s
-      next
+    Project.visible().where('status = 1').each do |item|
+      items.push({
+        :id => item.id,
+        :name => item.name,
+        :color => Setting.plugin_dashboard["project_color_" + item.id.to_s]
+      })
     end
 
-    executor = ""
-    if !issue.assigned_to.nil?
-      executor = issue.assigned_to.name()
-    end
-
-    issues.push({
-      "id" => issue.id,
-      "subject" => issue.subject,
-      "status_id" => issue.status.id,
-      "project" => issue.project.name,
-      "project_id" => issue.project.id,
-      "created_at" => issue.start_date,
-      "author" => issue.author.name(User::USER_FORMATS[:firstname_lastname]),
-      "executor" => executor
-    })
+    items
   end
 
-  statuses = []
-  for status in IssueStatus.sorted().where('is_closed = false') do
-    statuses.push({
-      "id" => status.id,
-      "name" => status.name,
-      "color" => Setting.plugin_dashboard["status_color_" + status.id.to_s],
-      "issues" => issues.select {|i| i["status_id"] == status.id }
-    })
+  def getIssues(project_id = -1)
+    items = project_id == -1 ? (Issue.visible()) : (Issue.visible().where(:projects => {:id => project_id}))
+    items.map { |item| {
+        :id => item.id,
+        :subject => item.subject,
+        :status_id => item.status.id,
+        :project => item.project,
+        :created_at => item.start_date,
+        :author => item.author.name(User::USER_FORMATS[:firstname_lastname]),
+        :executor => item.assigned_to.nil? ? ('') : (item.assigned_to.name())
+      }
+    }
   end
-  return statuses
+
 end

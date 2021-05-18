@@ -17,7 +17,7 @@
   <tr>
     <th colspan="2"> <%=l :settings_header_projects %> </td>
   </tr>
-  <% Project.all.each do |project| %>
+  <% Project.where('status = 1').each do |project| %>
     <% property_name = "project_color_" + project.id.to_s %>
     <tr>
       <td> <%= project.name %> </th>
