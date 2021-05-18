@@ -9,7 +9,7 @@ function getUriWithoutDashboard() {
     return baseUri;
 }
 
-function goToIssue(id) {
+function goToIssue(id) { 
     const baseUri = getUriWithoutDashboard();
     location.pathname = `${baseUri}/issues/${id}`;
 }
