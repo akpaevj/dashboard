@@ -9,6 +9,7 @@ You can adapt the plugin in settings by changing projects and statuses colors th
 ## Installation:  
 Just follow Redmine plugin installation steps (it doesn't require migration step)
 
+## Notes: 
 *if you want to change Redmine root page to this dashboard, you should replace string*
 ```ruby
 root :to => 'welcome#index', :as => 'home'
