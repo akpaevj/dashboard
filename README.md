@@ -9,6 +9,12 @@ You can adapt the plugin in settings by changing projects and statuses colors th
 ### Installation:  
 Just follow Redmine plugin installation steps (it doesn't require migration step)
 
+### Customization:
+This plugin provides some options to custom displaying of the dashboard:
+1. Enable/disable displaying of "closed" statuses and issues  
+2. Enable/disable minimizing of "closed" issues (if they are enabled)
+3. Colors of statuses and projects
+
 ### Notes: 
 *if you want to change Redmine root page to this dashboard, you should replace string*
 ```ruby
