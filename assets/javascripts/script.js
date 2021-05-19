@@ -17,11 +17,13 @@ function goToIssue(id) {
 function init() {
     document.querySelector('#main-menu').remove();
 
-    document.querySelector('[name=project]').addEventListener('change', function(e) {
-        if (this.value == "-1") {
-            location.search = "";
-        } else {
-            location.search = `project_id=${this.value}`;   
-        }
+    document.querySelectorAll('.select_project_item').forEach(item => {
+        item.addEventListener('click', function() {
+            if (this.dataset.id == "-1") {
+                location.search = "";
+            } else {
+                location.search = `project_id=${this.dataset.id}`;   
+            }
+        })
     });
 }

@@ -95,10 +95,6 @@
     font-size: medium;
 }
 
-.select_project {
-    margin-left: 10px;
-}
-
 .issue_card_header {
     display: flex;
     padding-top: 5px;
@@ -110,9 +106,40 @@
     margin-left: auto;
     padding-top: 5px;
     padding-bottom: 5px;
-    padding-left: 8px;
-    padding-right: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
     margin-right: 10px;
     border-radius: 15px;
+    color: rgb(255, 255, 255);
+    font-size: smaller;
+}
+
+.select_project_container {
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
+}
+
+.select_project_item {
+    display: inline-flex;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 15px;
+    margin-right: 10px;
     color: white;
+    opacity: 0.5;
+    min-width: 50px;
+    align-items: center;
+    justify-content: center;
+}
+
+.select_project_item:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+ 
+.select_project_item_selected {
+    opacity: 1;
 }

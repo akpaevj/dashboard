@@ -29,7 +29,7 @@ class DashboardController < ApplicationController
     items.push({
       :id => -1,
       :name => l(:label_all),
-      :color => nil
+      :color => '#4ec7ff'
     })
 
     Project.visible().where('status = 1').each do |item|
