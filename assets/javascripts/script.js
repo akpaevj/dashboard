@@ -26,4 +26,6 @@ function init() {
             }
         })
     });
+
+    document.querySelector("#content").style.overflow = "hidden"; 
 }
