@@ -3,6 +3,8 @@ ru:
   settings_header_statuses: "Цвета статусов"
   settings_header_projects: "Цвета проектов"
   settings_header_other: "Разное"
+  settings_display_closed_statuses: 'Отображать "закрытые" статусы'
+  settings_display_minimized_closed_issue_cards: 'Отображать свернутые карточки "закрытых" задач'
   settings_enable_drag_and_drop: 'Включить "drag and drop" изменение статуса'
   executor_not_set: "Не установлен"
   label_all: "Все"
