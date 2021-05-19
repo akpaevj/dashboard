@@ -21,21 +21,27 @@
 			<div class="status_column_header" style="border-bottom-color: <%= status[:color] %>">
 				<span> <%= status[:name] %> </span>
 			</div>
-			<div class="status_column_issues">
+			<div class="<% status[:is_closed] ? ("status_column_closed_issues") : ("status_column_issues") %>">
 				<% @issues.select {|issue| issue[:status_id] == status[:id] }.each do |issue| %>
-					<div class="issue_card" data-status="<%= status[:id] %>" data-id="<%= issue[:id] %>" onclick="goToIssue(<%= issue[:id] %>)">
-						<div class="issue_card_header">
-							<span class="issue_card_header_date"><%= issue[:created_at] %></span>
-							<div class="issue_card_header_project" style="background-color: <%= @projects.select {|item| item[:id] == issue[:project].id }[0][:color] %>"><%= issue[:project].name %></div>
+					<% if status[:is_closed] && Setting.plugin_dashboard['display_minimized_closed_issue_cards'] %>
+						<div class="minimized_issue_card" data-status="<%= status[:id] %>" data-id="<%= issue[:id] %>" onclick="goToIssue(<%= issue[:id] %>)">
+							<span> <%= "#" + issue[:id].to_s %> </span>
 						</div>
-						<span class="issue_card_title"> <%= issue[:subject] %> </span>
-						<span class="issue_card_author"><i class="bi bi-person"></i> <%= issue[:author] %> </span>
-						<% if issue[:executor] == '' || issue[:executor].nil? %>
-							<span class="issue_card_executor_not_set"><i class="bi bi-hammer"></i> <%=l :executor_not_set %></span>
-						<% else %>
-							<span class="issue_card_executor"><i class="bi bi-hammer"></i> <%= issue[:executor] %> </span>
-						<% end %>
-					</div>
+					<% else %>
+						<div class="issue_card" data-status="<%= status[:id] %>" data-id="<%= issue[:id] %>" onclick="goToIssue(<%= issue[:id] %>)">
+							<div class="issue_card_header">
+								<span class="issue_card_header_date"><%= issue[:created_at] %></span>
+								<div class="issue_card_header_project" style="background-color: <%= @projects.select {|item| item[:id] == issue[:project].id }[0][:color] %>"><%= issue[:project].name %></div>
+							</div>
+							<span class="issue_card_title"> <%= issue[:subject] %> </span>
+							<span class="issue_card_author"><i class="bi bi-person"></i> <%= issue[:author] %> </span>
+							<% if issue[:executor] == '' || issue[:executor].nil? %>
+								<span class="issue_card_executor_not_set"><i class="bi bi-hammer"></i> <%=l :executor_not_set %></span>
+							<% else %>
+								<span class="issue_card_executor"><i class="bi bi-hammer"></i> <%= issue[:executor] %> </span>
+							<% end %>
+						</div>
+					<% end %>
 				<% end %>
 			</div>
 		</div>

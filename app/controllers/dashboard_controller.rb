@@ -15,10 +15,12 @@ class DashboardController < ApplicationController
   private
 
   def getStatuses
-    IssueStatus.sorted().where('is_closed = false').map { |item| {
+    items = Setting.plugin_dashboard['display_closed_statuses'] ? (IssueStatus.sorted()) : (IssueStatus.sorted().where('is_closed = false'))
+    items.map { |item| {
       :id => item.id,
       :name => item.name,
-      :color => Setting.plugin_dashboard["status_color_" + item.id.to_s]
+      :color => Setting.plugin_dashboard["status_color_" + item.id.to_s],
+      :is_closed => item.is_closed
       }
     }
   end

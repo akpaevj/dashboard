@@ -1,5 +1,5 @@
 function getUriWithoutDashboard() {
-    const reg = new RegExp('((?<=.+)\/dashboard.*$|\/$)');
+    const reg = new RegExp('(\/dashboard.*$|\/$)');
     let baseUri = location.pathname;
 
     if (baseUri.match(reg)!= null) {
