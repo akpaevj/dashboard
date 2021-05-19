@@ -21,3 +21,4 @@ root :to => 'dashboard#index', :as => 'home'
 
 ![Alt text](screenshots/screen1.png)
 ![Alt text](screenshots/screen2.png)
+![Alt text](screenshots/screen3.png)
