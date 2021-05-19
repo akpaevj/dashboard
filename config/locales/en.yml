@@ -3,6 +3,8 @@ en:
   settings_header_statuses: "Statuses colors"
   settings_header_projects: "Projects colors"
   settings_header_other: "Other"
+  settings_display_closed_statuses: 'Display "closed" statuses'
+  settings_display_minimized_closed_issue_cards: 'Display minimized "closed" issue cards'
   settings_enable_drag_and_drop: 'Enable "drag and drop" status changing'
   executor_not_set: "Not set"
   label_all: "All"
