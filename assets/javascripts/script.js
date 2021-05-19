@@ -14,17 +14,25 @@ function goToIssue(id) {
     location.href = `${baseUri}/issues/${id}`;
 }
 
+function chooseProject(projectId) {
+    if (projectId == "-1") {
+        location.search = "";
+    } else {
+        location.search = `project_id=${projectId}`;   
+    }
+}
+
 function init() {
     document.querySelector('#main-menu').remove();
 
     document.querySelectorAll('.select_project_item').forEach(item => {
         item.addEventListener('click', function() {
-            if (this.dataset.id == "-1") {
-                location.search = "";
-            } else {
-                location.search = `project_id=${this.dataset.id}`;   
-            }
+            chooseProject(this.dataset.id);
         })
+    });
+
+    document.querySelector('[name=project]').addEventListener('change', function(e) {
+        chooseProject(this.value);
     });
 
     document.querySelector("#content").style.overflow = "hidden"; 
