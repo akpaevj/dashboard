@@ -31,9 +31,12 @@ function init() {
         })
     });
 
-    document.querySelector('[name=project]').addEventListener('change', function(e) {
-        chooseProject(this.value);
-    });
+    const projectsSelector = document.querySelector('[name=project]');
+    if (projectsSelector != null) {
+        projectsSelector.addEventListener('change', function(e) {
+            chooseProject(this.value);
+        });
+    }
 
     document.querySelector("#content").style.overflow = "hidden"; 
 }
