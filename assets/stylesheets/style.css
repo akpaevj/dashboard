@@ -166,7 +166,7 @@
     margin-right: 10px;
     color: white;
     opacity: 0.5;
-    min-width: 50px;
+    min-width: fit-content;
     align-items: center;
     justify-content: center;
 }
