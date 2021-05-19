@@ -1,6 +1,6 @@
 function getUriWithoutDashboard() {
     const reg = new RegExp('(\/dashboard.*$|\/$)');
-    let baseUri = location.pathname;
+    let baseUri = location.href;
 
     if (baseUri.match(reg)!= null) {
         baseUri = baseUri.replace(reg, '');
@@ -11,7 +11,7 @@ function getUriWithoutDashboard() {
 
 function goToIssue(id) { 
     const baseUri = getUriWithoutDashboard();
-    location.pathname = `${baseUri}/issues/${id}`;
+    location.href = `${baseUri}/issues/${id}`;
 }
 
 function init() {
