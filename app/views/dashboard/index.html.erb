@@ -5,48 +5,51 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 <% end %>
 
-<% if Setting.plugin_dashboard['use_drop_down_menu'] %>
+<% if @use_drop_down_menu %>
 	<label class="select_project"> <%=l :field_project %>
 		<select name="project">
-			<% @projects.each do |project| %>
-				<% if project[:id].to_s == @selected_project_id.to_s %>
-					<option selected value="<%= project[:id] %>"><%= project[:name] %></option>
+			<% @projects.each do |project_id, project| %>
+				<% if project_id == @selected_project_id %>
+					<option selected value="<%= project_id %>"><%= project[:name] %></option>
 				<% else %>
-					<option value="<%= project[:id] %>"><%= project[:name] %></option>
+					<option value="<%= project_id %>"><%= project[:name] %></option>
 				<% end %>
 			<% end %>
 		</select>
 	</label>
 <% else %>
 	<div class="select_project_container">
-		<% @projects.each do |project| %>
-			<% if project[:id].to_s == @selected_project_id.to_s %>
-				<div class="select_project_item select_project_item_selected" style="background-color: <%= project[:color] %>" data-id="<%= project[:id] %>"><%= project[:name] %></div>
+		<% @projects.each do |project_id, project| %>
+			<% if project_id == @selected_project_id %>
+				<div class="select_project_item select_project_item_selected" style="background-color: <%= project[:color] %>" data-id="<%= project_id %>"><%= project[:name] %></div>
 			<% else %>
-				<div class="select_project_item" style="background-color: <%= project[:color] %>" data-id="<%= project[:id] %>"><%= project[:name] %></div>
+				<div class="select_project_item" style="background-color: <%= project[:color] %>" data-id="<%= project_id %>"><%= project[:name] %></div>
 			<% end %>
 		<% end %>
 	</div>
 <% end %>
 
 <div class="issues_container">
-	<% @statuses.each do |status| %>
-		<div class="status_column" data-id="<%= status[:id] %>">
+	<% @statuses.each do |status_id, status| %>
+		<div class="status_column" data-id="<%= status_id %>">
 			<div class="status_column_header" style="border-bottom-color: <%= status[:color] %>">
 				<span> <%= status[:name] %> </span>
 			</div>
-			<div class="<% status[:is_closed] ? ("status_column_closed_issues") : ("status_column_issues") %>">
-				<% @issues.select {|issue| issue[:status_id] == status[:id] }.each do |issue| %>
-					<% project_color = @projects.select {|item| item[:id] == issue[:project].id }[0][:color] %>
-					<% if status[:is_closed] && Setting.plugin_dashboard['display_minimized_closed_issue_cards'] %>
-						<div class="minimized_issue_card" style="border-bottom-color: <%= project_color %>" data-status="<%= status[:id] %>" data-id="<%= issue[:id] %>" onclick="goToIssue(<%= issue[:id] %>)">
+			<div class="<%= status[:is_closed] ? "status_column_closed_issues" : "status_column_issues" %>">
+				<% @issues.select { |issue| issue[:status_id] == status_id }.each do |issue| %>
+					<% project_color = @projects[issue[:project_id]][:color] %>
+					<% project_name = @projects[issue[:project_id]][:name] %>
+					<% if status[:is_closed] && @display_minimized_closed_issue_cards %>
+						<div class="minimized_issue_card" style="border-bottom-color: <%= project_color %>" data-id="<%= issue[:id] %>" onclick="goToIssue(<%= issue[:id] %>)">
 							<span> <%= "#" + issue[:id].to_s %> </span>
 						</div>
 					<% else %>
-						<div class="issue_card" data-status="<%= status[:id] %>" data-id="<%= issue[:id] %>" onclick="goToIssue(<%= issue[:id] %>)">
+						<div class="issue_card" data-id="<%= issue[:id] %>" onclick="goToIssue(<%= issue[:id] %>)">
 							<div class="issue_card_header">
 								<span class="issue_card_header_date"><%= issue[:created_at] %></span>
-								<div class="issue_card_header_project" style="background-color: <%= project_color %>"><%= issue[:project].name %></div>
+								<% if @show_project_badge %>
+									<div class="issue_card_header_project" style="background-color: <%= project_color %>"><%= project_name %></div>
+								<% end %>
 							</div>
 							<span class="issue_card_title"> <%= issue[:subject] %> </span>
 							<span class="issue_card_author"><i class="bi bi-person"></i> <%= issue[:author] %> </span>
@@ -65,4 +68,4 @@
 
 <script>
 	init();
-</script>
+</script> 

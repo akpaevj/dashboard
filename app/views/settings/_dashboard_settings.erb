@@ -45,5 +45,11 @@
       <%= check_box_tag "settings[display_minimized_closed_issue_cards]", false, @settings['display_minimized_closed_issue_cards'] %>
     </td>
   </tr>
+  <tr>
+    <td> <%=l :settings_display_child_projects_tasks %> </th>
+    <td>
+      <%= check_box_tag "settings[display_child_projects_tasks]", false, @settings['display_child_projects_tasks'] %>
+    </td>
+  </tr>
   </tbody>
 </table>
