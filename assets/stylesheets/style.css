@@ -88,6 +88,7 @@
 	align-items: flex-start;
 	flex-direction: column;
 	justify-content: center;
+	transition: background-color .1s ease-in-out;
 }
 
 .status_column_closed_issues .issue_card {
@@ -101,10 +102,10 @@
 	border-radius: 5px;
 	border-bottom: 2px solid;
 	background-color: rgb(240, 240, 240);
+	transition: background-color .1s ease-in-out;
 }
 
 .status_column_issues .issue_card span {
-	padding: 5px;
     padding-left: 10px;
 	padding-right: 10px;
 	font-size: small;
