@@ -1,5 +1,5 @@
 function getUriWithoutDashboard() {
-    const reg = new RegExp('(\/dashboard.*$|\/$)');
+    const reg = new RegExp('(\\/dashboard.*$|\\/$|\\?.*$)');
     let baseUri = location.href;
 
     if (baseUri.match(reg)!= null) {
@@ -7,6 +7,11 @@ function getUriWithoutDashboard() {
     }
 
     return baseUri;
+}
+
+function getUriWithDashboard() {
+    const baseUri = getUriWithoutDashboard();
+    return `${baseUri}/dashboard`;
 }
 
 function goToIssue(id) { 
@@ -22,6 +27,13 @@ function chooseProject(projectId) {
     }
 }
 
+async function setIssueStatus(issueId, statusId, item, oldContainer, oldIndex) { 
+    const response = await fetch(`${getUriWithDashboard()}/set_issue_status/${issueId}/${statusId}`);
+    if (!response.ok) {
+        oldContainer.insertBefore(item, oldContainer.childNodes[oldIndex + 1]);
+    }
+}
+
 function init() {
     document.querySelector('#main-menu').remove();
 
@@ -31,7 +43,7 @@ function init() {
         })
     });
 
-    const projectsSelector = document.querySelector('[name=project]');
+    const projectsSelector = document.querySelector('#select_project');
     if (projectsSelector != null) {
         projectsSelector.addEventListener('change', function(e) {
             chooseProject(this.value);
@@ -39,4 +51,18 @@ function init() {
     }
 
     document.querySelector("#content").style.overflow = "hidden"; 
+
+    document.querySelectorAll('.status_column_closed_issues, .status_column_issues').forEach(item => {
+        new Sortable(item, {
+            group: 'issues',
+            animation: 150,
+            draggable: '.issue_card',
+            onEnd: async function(evt) {
+                const newStatus = evt.to.closest('.status_column').dataset.id;
+                const issueId = evt.item.dataset.id;
+
+                await setIssueStatus(issueId, newStatus, evt.item, evt.from, evt.oldIndex);
+            }
+        })
+    })
 }
