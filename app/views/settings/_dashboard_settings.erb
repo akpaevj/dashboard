@@ -28,6 +28,12 @@
     <th colspan="2"> <%=l :settings_header_other %> </td>
   </tr>
   <tr>
+    <td> <%=l :settings_use_drop_down_menu %> </th>
+    <td>
+      <%= check_box_tag "settings[use_drop_down_menu]", false, @settings['use_drop_down_menu'] %>
+    </td>
+  </tr>
+  <tr>
     <td> <%=l :settings_display_closed_statuses %> </th>
     <td>
       <%= check_box_tag "settings[display_closed_statuses]", false, @settings['display_closed_statuses'] %>
@@ -37,6 +43,12 @@
     <td> <%=l :settings_display_minimized_closed_issue_cards %> </th>
     <td>
       <%= check_box_tag "settings[display_minimized_closed_issue_cards]", false, @settings['display_minimized_closed_issue_cards'] %>
+    </td>
+  </tr>
+  <tr>
+    <td> <%=l :settings_display_child_projects_tasks %> </th>
+    <td>
+      <%= check_box_tag "settings[display_child_projects_tasks]", false, @settings['display_child_projects_tasks'] %>
     </td>
   </tr>
   </tbody>

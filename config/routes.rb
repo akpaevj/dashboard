@@ -1,2 +1,2 @@
 get 'dashboard', to: 'dashboard#index'
-get 'dashboard/setIssueStatus', to: 'dashboard#setIssueStatus'
+get 'dashboard/dashboard_data', to: 'dashboard#dashboard_data'
