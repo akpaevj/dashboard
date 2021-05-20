@@ -12,6 +12,22 @@ class DashboardController < ApplicationController
     @issues = get_issues(@selected_project_id, show_sub_tasks)
   end
 
+  def set_issue_status
+    issue_id = params[:issue_id].to_i
+    status_id = params[:status_id].to_i
+
+    issue = Issue.find(issue_id)
+
+    if issue.new_statuses_allowed_to.select { |item| item.id == status_id }.any?
+      issue.init_journal(User.current)
+      issue.status_id = status_id
+      issue.save
+      head :ok
+    else
+      head :forbidden
+    end
+  end
+
   private
 
   def get_statuses
@@ -25,6 +41,14 @@ class DashboardController < ApplicationController
       }
     end
     data
+  end
+
+  def get_random_dark_color
+    'hsl(' + Random.new.rand(0..360).to_s + ', 60%, 75%)'
+  end
+
+  def get_random_light_color
+    'hsl(' + Random.new.rand(0..360).to_s + ', 100%, 50%)'
   end
 
   def get_projects

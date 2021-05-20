@@ -27,4 +27,7 @@ root :to => 'dashboard#index', :as => 'home'
 
 ![Alt text](screenshots/screenshot1.png)
 ![Alt text](screenshots/screenshot2.png)
+<<<<<<< HEAD
+=======
 ![Alt text](screenshots/screenshot3.png)
+>>>>>>> master
