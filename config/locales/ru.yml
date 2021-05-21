@@ -8,5 +8,6 @@ ru:
   settings_display_child_projects_tasks: 'Отображать задачи дочерних проектов'
   settings_display_minimized_closed_issue_cards: 'Отображать свернутые карточки "закрытых" задач'
   settings_enable_drag_and_drop: '"Drag and drop" изменение статуса'
+  settings_generate_colors: "Сгенерировать цвета"
   executor_not_set: "Не установлен"
   label_all: "Все"

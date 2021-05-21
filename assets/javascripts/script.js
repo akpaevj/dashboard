@@ -34,7 +34,7 @@ async function setIssueStatus(issueId, statusId, item, oldContainer, oldIndex) {
     }
 }
 
-function init() {
+function init(useDragAndDrop) {
     document.querySelector('#main-menu').remove();
 
     document.querySelectorAll('.select_project_item').forEach(item => {
@@ -52,17 +52,19 @@ function init() {
 
     document.querySelector("#content").style.overflow = "hidden"; 
 
-    document.querySelectorAll('.status_column_closed_issues, .status_column_issues').forEach(item => {
-        new Sortable(item, {
-            group: 'issues',
-            animation: 150,
-            draggable: '.issue_card',
-            onEnd: async function(evt) {
-                const newStatus = evt.to.closest('.status_column').dataset.id;
-                const issueId = evt.item.dataset.id;
-
-                await setIssueStatus(issueId, newStatus, evt.item, evt.from, evt.oldIndex);
-            }
+    if (useDragAndDrop) {
+        document.querySelectorAll('.status_column_closed_issues, .status_column_issues').forEach(item => {
+            new Sortable(item, {
+                group: 'issues',
+                animation: 150,
+                draggable: '.issue_card',
+                onEnd: async function(evt) {
+                    const newStatus = evt.to.closest('.status_column').dataset.id;
+                    const issueId = evt.item.dataset.id;
+    
+                    await setIssueStatus(issueId, newStatus, evt.item, evt.from, evt.oldIndex);
+                }
+            })
         })
-    })
+    }
 }

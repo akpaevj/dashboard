@@ -1,3 +1,7 @@
+<% content_for :header_tags do %>
+	<%= javascript_include_tag 'settings', plugin: 'dashboard' %>
+<% end %>
+
 <table>
   <tbody>
   <tr>
@@ -25,7 +29,18 @@
     </tr>
   <% end %>
   <tr>
+    <td colspan="2">
+      <button type="button" onclick="generateColors()"><%=l :settings_generate_colors %></button>
+    <td>
+  </tr>
+  <tr>
     <th colspan="2"> <%=l :settings_header_other %> </td>
+  </tr>
+  <tr>
+    <td> <%=l :settings_enable_drag_and_drop %> </th>
+    <td>
+      <%= check_box_tag "settings[enable_drag_and_drop]", true, @settings['enable_drag_and_drop'] %>
+    </td>
   </tr>
   <tr>
     <td> <%=l :settings_use_drop_down_menu %> </th>
