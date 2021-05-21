@@ -4,6 +4,11 @@ Plugin adds an issues dashboard to the application.
 This dashboard looks like an usual Kanban desk and presents a column for each status that contains issue cards.
 You can follow to any issue just by clicking on the issue card. Also it adds a new item to the top menu.  
 
+#### Supported languages:
+- Russian
+- English
+- Polish (Wojtek Śmiałek)
+
 ### Features:  
 - Displaying tasks of child projects (configurable)
 - Custom coloring of projects and tasks badges
