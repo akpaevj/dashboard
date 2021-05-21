@@ -12,14 +12,14 @@ function hslToHex(h, s, l) {
 function genereateStatusesColors() {
   const items = document.querySelectorAll('input[name^="settings[status_color"]');
   const degreePerItem = 360 / items.length;
-  let currentDegree = 0;
+  let currentDegree = 360 - degreePerItem;
 
   items.forEach(function(item) {
-    if (currentDegree > 360) {
-      currentDegree = 360;
+    if (currentDegree < 0) {
+      currentDegree = 0;
     }
     item.value = hslToHex(currentDegree, 100, 50);
-    currentDegree += degreePerItem;
+    currentDegree -= degreePerItem;
   }); 
 }
 
