@@ -9,7 +9,7 @@ You can follow to any issue just by clicking on the issue card. Also it adds a n
 - Custom coloring of projects and tasks badges
 - "Drag-And-Drop" tasks between statuses
 - Displaying of "closed" statuses and issues (configurable)
-- Minimizing of "closed" issues (configurable)
+- Minimizing of "closed" issue cards (configurable)
 
 ### Installation:  
 Just follow Redmine plugin installation steps (it doesn't require migration step)
