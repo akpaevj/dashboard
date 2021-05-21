@@ -1,0 +1,13 @@
+pl:
+  top_menu_item_title: "Dashboard"
+  settings_header_statuses: "Kolory statusów"
+  settings_header_projects: "Kolory projektów"
+  settings_header_other: "Inne"
+  settings_use_drop_down_menu: 'Użycie menu typu drop-down do wyboru projektów'
+  settings_display_closed_statuses: 'Pokaż statusy z atrybutem "closed"'
+  settings_display_child_projects_tasks: 'Wyświetlaj zadania projektów podrzędnych'
+  settings_display_minimized_closed_issue_cards: 'Wyświetlaj karty zadań z atrybutem "closed" zminimalizowane'
+  settings_enable_drag_and_drop: 'Zmiana statusu poprzez "Drag and drop"'
+  settings_generate_colors: "Wygeneruj kolory"
+  executor_not_set: "Nie przydzielono"
+  label_all: "Wszystkie"
