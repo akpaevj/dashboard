@@ -29,5 +29,5 @@ root :to => 'welcome#index', :as => 'home'
 root :to => 'dashboard#index', :as => 'home'
 ```
 
-![Alt text](screenshots/screen1.png)
+![Alt text](screenshots/gif1.gif)
 ![Alt text](screenshots/screen2.png)
