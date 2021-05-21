@@ -7,7 +7,7 @@ You can follow to any issue just by clicking on the issue card. Also it adds a n
 #### Supported languages:
 - Russian
 - English
-- Polish (Wojtek Śmiałek)
+- Polish (thanks Wojtek Śmiałek)
 
 ### Features:  
 - Displaying tasks of child projects (configurable)
