@@ -6,6 +6,7 @@ class DashboardController < ApplicationController
     @selected_project_id = params[:project_id].nil? ? -1 : params[:project_id].to_i
     show_sub_tasks = Setting.plugin_dashboard['display_child_projects_tasks']
     @show_project_badge = @selected_project_id == -1 || @selected_project_id != -1 && show_sub_tasks
+    @use_drag_and_drop = Setting.plugin_dashboard['enable_drag_and_drop']
     @display_minimized_closed_issue_cards = Setting.plugin_dashboard['display_closed_statuses'] ? Setting.plugin_dashboard['display_minimized_closed_issue_cards'] : false
     @statuses = get_statuses
     @projects = get_projects
@@ -41,14 +42,6 @@ class DashboardController < ApplicationController
       }
     end
     data
-  end
-
-  def get_random_dark_color
-    'hsl(' + Random.new.rand(0..360).to_s + ', 60%, 75%)'
-  end
-
-  def get_random_light_color
-    'hsl(' + Random.new.rand(0..360).to_s + ', 100%, 50%)'
   end
 
   def get_projects

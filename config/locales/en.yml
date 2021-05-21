@@ -8,5 +8,6 @@ en:
   settings_display_child_projects_tasks: 'Display child projects tasks'
   settings_display_minimized_closed_issue_cards: 'Display minimized "closed" issue cards'
   settings_enable_drag_and_drop: '"Drag and drop" status changing'
+  settings_generate_colors: "Generate colors"
   executor_not_set: "Not set"
   label_all: "All"
