@@ -1,6 +1,7 @@
 .select_project_container {
 	display: flex;
 	flex-direction: row;
+	flex-wrap: wrap;
 	margin-left: 10px;
 }
 
@@ -12,6 +13,7 @@
 	padding-right: 8px;
 	border-radius: 200px;
 	margin-right: 5px;
+	margin-top: 5px;
 	color: white;
 	opacity: 0.5;
 	min-width: fit-content;
