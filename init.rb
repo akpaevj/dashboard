@@ -1,7 +1,7 @@
 Redmine::Plugin.register :dashboard do
   name 'Dashboard'
   author "Akpaev E.A."
-  description "Plugin adds an issues dashboard to the application"
+  description "Plugin adds an issues dashboard to the application "
   version '1.0.11'
   url 'https://github.com/akpaevj/Dashboard'
   author_url 'https://github.com/akpaevj'
