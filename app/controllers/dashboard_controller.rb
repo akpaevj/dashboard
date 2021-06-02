@@ -59,6 +59,13 @@ class DashboardController < ApplicationController
     data
   end
 
+  def add_children_ids(id_array, project)
+    project.children.each do |child_project|
+      id_array.push(child_project.id)
+      add_children_ids(id_array, child_project)
+    end
+  end
+
   def get_issues(project_id, with_sub_tasks)
     id_array = []
 
@@ -69,16 +76,7 @@ class DashboardController < ApplicationController
     # fill array of children ids
     if project_id != -1 && with_sub_tasks
       project = Project.find(project_id)
-      children = nil
-      loop do
-        if project.children.any?
-          children = project.children.first
-          id_array.push(children.id)
-          project = children
-        else
-          break
-        end
-      end
+      add_children_ids(id_array, project)
     end
 
     items = id_array.empty? ? Issue.visible : Issue.visible.where(:projects => {:id => id_array})
