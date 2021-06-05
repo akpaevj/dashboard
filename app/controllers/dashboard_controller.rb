@@ -91,11 +91,11 @@ class DashboardController < ApplicationController
         :subject => item.subject,
         :status_id => item.status.id,
         :project_id => item.project.id,
-        :created_at => item.start_date,
+        :created_on => item.created_on,
         :author => item.author.name(User::USER_FORMATS[:firstname_lastname]),
         :executor => item.assigned_to.nil? ? '' : item.assigned_to.name
       }
     end
-    data.sort_by { |item| item[:created_at]}
+    data.sort_by { |item| item[:created_on] }
   end
 end
