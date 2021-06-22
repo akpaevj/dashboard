@@ -24,7 +24,7 @@ Just follow Redmine plugin installation steps (it doesn't require migration step
 ```ruby
 root :to => 'welcome#index', :as => 'home'
 ```
-*at Redmine default config file by path "config/routes.rb" to*
+*in Redmine default config file by path "config/routes.rb" to*
 ```ruby
 root :to => 'dashboard#index', :as => 'home'
 ```
