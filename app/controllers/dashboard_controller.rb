@@ -32,7 +32,11 @@ class DashboardController < ApplicationController
   private
 
   def get_statuses
-    data = {}
+    data = {-1 => {
+      :name => l(:label_all),
+      :color => '#4ec7ff',
+      :is_closed => false,
+    }}
     items = Setting.plugin_dashboard['display_closed_statuses'] ? IssueStatus.sorted : IssueStatus.sorted.where('is_closed = false')
     items.each do |item|
       data[item.id] = {

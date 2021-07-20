@@ -7,11 +7,11 @@
 
 <% if @use_drop_down_menu %>
 	<select id="select_project">
-		<% @projects.each do |project_id, project| %>
-			<% if project_id == @selected_project_id %>
-				<option selected value="<%= project_id %>"><%= project[:name] %></option>
+		<% @statuses.each do |status_id, status| %>
+			<% if status_id == -1 %> 
+				<option selected value="<%= status_id %>"><%= status[:name] %></option>
 			<% else %>
-				<option value="<%= project_id %>"><%= project[:name] %></option>
+				<option value="<%= status_id %>"><%= status[:name] %></option>
 			<% end %>
 		<% end %>
 	</select>
