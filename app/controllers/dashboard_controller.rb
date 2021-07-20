@@ -49,10 +49,7 @@ class DashboardController < ApplicationController
   end
 
   def get_projects
-    data = {-1 => {
-      :name => l(:label_all),
-      :color => '#4ec7ff'
-    }}
+    data = {}
 
     Project.visible.each do |item|
       data[item.id] = {

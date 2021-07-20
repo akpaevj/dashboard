@@ -28,15 +28,15 @@
 <% end %>
 
 <div class="issues_container">
-	<% @statuses.each do |status_id, status| %>
-		<div class="status_column" data-id="<%= status_id %>">
-			<div class="status_column_header" style="border-bottom-color: <%= status[:color] %>">
-				<span> <%= status[:name] %> </span>
+	<% @projects.each do |project_id, project| %>
+		<div class="status_column" data-id="<%= project_id %>">
+			<div class="status_column_header" style="border-bottom-color: <%= project[:color] %>">
+				<span> <%= project[:name] %> </span>
 			</div>
-			<div class="<%= status[:is_closed] ? "status_column_closed_issues" : "status_column_issues" %>">
-				<% @issues.select { |issue| issue[:status_id] == status_id }.each do |issue| %>
-					<% project_color = @projects[issue[:project_id]][:color] %>
-					<% project_name = @projects[issue[:project_id]][:name] %>
+			<div class="<%= false ? "status_column_closed_issues" : "status_column_issues" %>">
+				<% @issues.select { |issue| issue[:project_id] == project_id }.each do |issue| %>
+					<% project_color = @statuses[issue[:status_id]][:color] %>
+					<% project_name = @statuses[issue[:status_id]][:name] %>
 					<div class="issue_card" style="border-color: <%= project_color %>" data-id="<%= issue[:id] %>" onclick="goToIssue(<%= issue[:id] %>)">
 						<span class="issue_card_id"> <%= "#" + issue[:id].to_s %> </span>
 						<div class="issue_card_header">
