@@ -8,7 +8,7 @@
 <% if @use_drop_down_menu %>
 	<select id="select_project">
 		<% @statuses.each do |status_id, status| %>
-			<% if status_id == -1 %> 
+			<% if status_id == @selected_status_id %> 
 				<option selected value="<%= status_id %>"><%= status[:name] %></option>
 			<% else %>
 				<option value="<%= status_id %>"><%= status[:name] %></option>
@@ -31,7 +31,12 @@
 	<% @projects.each do |project_id, project| %>
 		<div class="status_column" data-id="<%= project_id %>">
 			<div class="status_column_header" style="border-bottom-color: <%= project[:color] %>">
-				<span> <%= project[:name] %> </span>
+				<% project[:parent].each do |str| %>
+					<div> <span> <%= str %> </span>
+				<% end %>
+				<% project[:parent].each do |str| %>
+					</div>
+				<% end %>
 			</div>
 			<div class="<%= false ? "status_column_closed_issues" : "status_column_issues" %>">
 				<% @issues.select { |issue| issue[:project_id] == project_id }.each do |issue| %>
@@ -41,9 +46,7 @@
 						<span class="issue_card_id"> <%= "#" + issue[:id].to_s %> </span>
 						<div class="issue_card_header">
 							<span class="issue_card_header_date"><%= I18n.l(issue[:created_on], format: :long) %></span>
-							<% if @show_project_badge %>
-								<div class="issue_card_header_project" style="background-color: <%= project_color %>"><%= project_name %></div>
-							<% end %>
+							<div class="issue_card_header_project" style="background-color: <%= project_color %>"><%= project_name %></div>
 						</div>
 						<span class="issue_card_title"> <%= issue[:subject] %> </span>
 						<span class="issue_card_author"><i class="bi bi-person"></i> <%= issue[:author] %> </span>

@@ -35,18 +35,19 @@
 	display: flex;
 	height: 100%;
 	width: 100%;
+	overflow-y: hidden;
+	overflow-x: scroll;
 }
 
 .status_column {
 	display: inline-flex;
-	width: 100%;
-	margin-left: 3px;
-	margin-right: 3px;
+	min-width: max-content;
+	margin-left: 1em;
+	margin-right: 1em;
 	flex-direction: column;
 }
 
 .status_column_header {
-	display: flex;
 	width: 100%;
 	height: min-content;
 	align-items: center;
@@ -58,6 +59,12 @@
 
 .status_column_header span {
 	padding: 8px;
+}
+.status_column_header div {
+	padding-left: 2em;
+}
+.status_column_header > div {
+	padding-left: 0em;
 }
 
 .status_column_issues {

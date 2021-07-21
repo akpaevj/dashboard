@@ -3,14 +3,13 @@
 class DashboardController < ApplicationController
   def index
     @use_drop_down_menu = Setting.plugin_dashboard['use_drop_down_menu']
-    @selected_project_id = params[:project_id].nil? ? -1 : params[:project_id].to_i
+    @selected_status_id  = params[:project_id].nil? ? -1 : params[:project_id].to_i
     show_sub_tasks = Setting.plugin_dashboard['display_child_projects_tasks']
-    @show_project_badge = @selected_project_id == -1 || @selected_project_id != -1 && show_sub_tasks
     @use_drag_and_drop = Setting.plugin_dashboard['enable_drag_and_drop']
     @display_minimized_closed_issue_cards = Setting.plugin_dashboard['display_closed_statuses'] ? Setting.plugin_dashboard['display_minimized_closed_issue_cards'] : false
     @statuses = get_statuses
     @projects = get_projects
-    @issues = get_issues(@selected_project_id, show_sub_tasks)
+    @issues = get_issues(@selected_status_id, show_sub_tasks) 
   end
 
   def set_issue_status
@@ -48,13 +47,24 @@ class DashboardController < ApplicationController
     data
   end
 
+  def get_parent(project)
+    path = []
+    parent = project
+    while !(parent.nil?)
+      path << parent.name + (path.empty? ? "" : "/")
+      parent = parent.parent
+    end
+    path.reverse
+  end
+
   def get_projects
     data = {}
 
     Project.visible.each do |item|
       data[item.id] = {
         :name => item.name,
-        :color => Setting.plugin_dashboard["project_color_" + item.id.to_s]
+        :color => Setting.plugin_dashboard["project_color_" + item.id.to_s],
+        :parent => get_parent(item)
       }
     end
     data
@@ -67,20 +77,22 @@ class DashboardController < ApplicationController
     end
   end
 
-  def get_issues(project_id, with_sub_tasks)
-    id_array = []
+  def get_issues(status_id, with_sub_tasks)
+    # id_array = []
 
-    if project_id != -1
-      id_array.push(project_id)
-    end
+    # if with_sub_tasks
+    #   Project.visible.each do |project|
+    #     id_array.push(project.id)
+    #   end
+    # end
 
-    # fill array of children ids
-    if project_id != -1 && with_sub_tasks
-      project = Project.find(project_id)
-      add_children_ids(id_array, project)
-    end
+    # # fill array of children ids
+    # if with_sub_tasks
+    #    project = Project.find(project_id)
+    #    add_children_ids(id_array, project)
+    #  end
 
-    items = id_array.empty? ? Issue.visible : Issue.visible.where(:projects => {:id => id_array})
+    items = status_id == -1 ? Issue.visible : Issue.visible.where(:status_id =>  status_id)
 
     unless Setting.plugin_dashboard['display_closed_statuses']
       items = items.open
