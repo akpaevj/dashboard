@@ -1,2 +1,1 @@
-get 'dashboard-alt', to: 'dashboard#index'
-get 'dashboard/set_issue_status/:issue_id/:status_id', to: 'dashboard#set_issue_status'
+get 'dashboard-alt', to: 'dashboard_alt#index'

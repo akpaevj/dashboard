@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 require 'date'
 
-class DashboardController < ApplicationController
+class DashboardAltController < ApplicationController
   def index
-    @use_drop_down_menu = Setting.plugin_dashboard['use_drop_down_menu']
+    @use_drop_down_menu = Setting.plugin_dashboard_alt['use_drop_down_menu']
     @selected_status_id  = params[:project_id].nil? ? -1 : params[:project_id].to_i
-    show_sub_tasks = Setting.plugin_dashboard['display_child_projects_tasks']
-    @use_drag_and_drop = Setting.plugin_dashboard['enable_drag_and_drop']
-    @display_minimized_closed_issue_cards = Setting.plugin_dashboard['display_closed_statuses'] ? Setting.plugin_dashboard['display_minimized_closed_issue_cards'] : false
+    show_sub_tasks = Setting.plugin_dashboard_alt['display_child_projects_tasks']
+    @use_drag_and_drop = Setting.plugin_dashboard_alt['enable_drag_and_drop']
+    @display_minimized_closed_issue_cards = Setting.plugin_dashboard_alt['display_closed_statuses'] ? Setting.plugin_dashboard_alt['display_minimized_closed_issue_cards'] : false
     @statuses = get_statuses
     @projects = get_projects
     @issues = get_issues(@selected_status_id, show_sub_tasks) 
@@ -37,11 +37,11 @@ class DashboardController < ApplicationController
       :color => '#4ec7ff',
       :is_closed => false,
     }}
-    items = Setting.plugin_dashboard['display_closed_statuses'] ? IssueStatus.sorted : IssueStatus.sorted.where('is_closed = false')
+    items = Setting.plugin_dashboard_alt['display_closed_statuses'] ? IssueStatus.sorted : IssueStatus.sorted.where('is_closed = false')
     items.each do |item|
       data[item.id] = {
         :name => item.name,
-        :color => Setting.plugin_dashboard["status_color_" + item.id.to_s],
+        :color => Setting.plugin_dashboard_alt["status_color_" + item.id.to_s],
         :is_closed => item.is_closed
       }
     end
@@ -72,7 +72,7 @@ class DashboardController < ApplicationController
     Project.visible.each do |item|
       data[item.id] = {
         :name => item.name,
-        :color => Setting.plugin_dashboard["project_color_" + item.id.to_s],
+        :color => Setting.plugin_dashboard_alt["project_color_" + item.id.to_s],
         :parent => get_parent(item),
         :sort_key => project_key(item),
       }
@@ -104,7 +104,7 @@ class DashboardController < ApplicationController
 
     items = status_id == -1 ? Issue.visible : Issue.visible.where(:status_id =>  status_id)
 
-    unless Setting.plugin_dashboard['display_closed_statuses']
+    unless Setting.plugin_dashboard_alt['display_closed_statuses']
       items = items.open
     end
 

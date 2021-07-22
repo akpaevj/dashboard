@@ -1,2 +1,2 @@
-module DashboardHelper
+module DashboardAltHelper
 end
