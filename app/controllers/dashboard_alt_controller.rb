@@ -9,7 +9,7 @@ class DashboardAltController < ApplicationController
     @use_drag_and_drop = Setting.plugin_dashboard_alt['enable_drag_and_drop']
     @display_minimized_closed_issue_cards = Setting.plugin_dashboard_alt['display_closed_statuses'] ? Setting.plugin_dashboard_alt['display_minimized_closed_issue_cards'] : false
     @statuses = get_statuses
-    @projects = get_projects
+    @projects = get_projects(show_sub_tasks)
     @issues = get_issues(@selected_status_id, show_sub_tasks) 
   end
 
@@ -66,16 +66,19 @@ class DashboardAltController < ApplicationController
     Issue.visible.where(selector).map{ |i| i.updated_on }.max || DateTime.new(1970, 1,1)
   end
 
-  def get_projects
+  def get_projects(show_sub_tasks)
     data = {}
 
     Project.visible.each do |item|
-      data[item.id] = {
-        :name => item.name,
-        :color => Setting.plugin_dashboard_alt["project_color_" + item.id.to_s],
-        :parent => get_parent(item),
-        :sort_key => project_key(item),
-      }
+      path = get_parent(item)
+      if path.length == 1 || show_sub_tasks
+        data[item.id] = {
+          :name => item.name,
+          :color => Setting.plugin_dashboard_alt["project_color_" + item.id.to_s],
+          :parent => path,
+          :sort_key => project_key(item),
+        }
+      end
     end
     data.sort_by{ |k, v| v[:sort_key] }.reverse.to_h
   end
