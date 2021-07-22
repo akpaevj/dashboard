@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'date'
 
 class DashboardController < ApplicationController
   def index
@@ -57,6 +58,14 @@ class DashboardController < ApplicationController
     path.reverse
   end
 
+  def project_key(project)
+    selector = {:project_id => project.id}
+    unless @selected_status_id == -1
+      selector[:status_id] = @selected_status_id
+    end
+    Issue.visible.where(selector).map{ |i| i.updated_on }.max || DateTime.new(1970, 1,1)
+  end
+
   def get_projects
     data = {}
 
@@ -64,10 +73,11 @@ class DashboardController < ApplicationController
       data[item.id] = {
         :name => item.name,
         :color => Setting.plugin_dashboard["project_color_" + item.id.to_s],
-        :parent => get_parent(item)
+        :parent => get_parent(item),
+        :sort_key => project_key(item),
       }
     end
-    data
+    data.sort_by{ |k, v| v[:sort_key] }.reverse.to_h
   end
 
   def add_children_ids(id_array, project)
@@ -105,10 +115,11 @@ class DashboardController < ApplicationController
         :status_id => item.status.id,
         :project_id => item.project.id,
         :created_on => item.created_on,
+        :updated_on => item.updated_on,
         :author => item.author.name(User::USER_FORMATS[:firstname_lastname]),
         :executor => item.assigned_to.nil? ? '' : item.assigned_to.name
       }
     end
-    data.sort_by { |item| item[:created_on] }
+    data.sort_by { |item| item[:updated_on] }.reverse
   end
 end

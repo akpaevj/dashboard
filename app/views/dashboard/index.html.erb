@@ -45,7 +45,7 @@
 					<div class="issue_card" style="border-color: <%= project_color %>" data-id="<%= issue[:id] %>" onclick="goToIssue(<%= issue[:id] %>)">
 						<span class="issue_card_id"> <%= "#" + issue[:id].to_s %> </span>
 						<div class="issue_card_header">
-							<span class="issue_card_header_date"><%= I18n.l(issue[:created_on], format: :long) %></span>
+							<span class="issue_card_header_date"><%= I18n.l(issue[:updated_on], format: :long) %></span>
 							<div class="issue_card_header_project" style="background-color: <%= project_color %>"><%= project_name %></div>
 						</div>
 						<span class="issue_card_title"> <%= issue[:subject] %> </span>
