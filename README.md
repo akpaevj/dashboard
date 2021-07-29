@@ -1,7 +1,7 @@
 # Dashboard 
 
 Plugin adds a new item to the top menu and is presented as a dashboard that contains issues and their statuses in columns.  
-It's available to move issue cards between statuses, going to the issue by clicking on the issue card, changing statuses and projects colors.  
+Available a moving of issue cards between statuses, going to the issue by clicking on the issue card, changing statuses and projects colors.  
 
 #### Supported languages:
 - Russian
