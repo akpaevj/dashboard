@@ -1,8 +1,7 @@
 # Dashboard 
 
-Plugin adds an issues dashboard to the application.
-This dashboard looks like an usual Kanban desk and presents a column for each status that contains issue cards.
-You can go to the issue just by clicking on the issue card. Also it adds a new item to the top menu.  
+Plugin adds a new item to the top menu and presents as a dashboard that contains issues and their statuses in columns.  
+It's available to move issue cards between statuses, going to the issue by clicking on the issue card, changing statuses and projects colors.  
 
 #### Supported languages:
 - Russian
