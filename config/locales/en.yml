@@ -3,7 +3,7 @@ en:
   settings_header_statuses: "Statuses colors"
   settings_header_projects: "Projects colors"
   settings_header_other: "Other"
-  settings_use_drop_down_menu: 'Use drop-down menu for the project choosing'
+  settings_use_drop_down_menu: 'Use drop-down menu for the status choosing'
   settings_display_closed_statuses: 'Display "closed" statuses'
   settings_display_child_projects_tasks: 'Display child projects tasks'
   settings_display_minimized_closed_issue_cards: 'Display minimized "closed" issue cards'
