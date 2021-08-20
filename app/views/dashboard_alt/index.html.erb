@@ -31,8 +31,8 @@
 	<% @projects.each do |project_id, project| %>
 		<div class="status_column" data-id="<%= project_id %>">
 			<div class="status_column_header" style="border-bottom-color: <%= project[:color] %>">
-				<% project[:parent].each do |str| %>
-					<div> <span> <%= str %> </span>
+				<% project[:parent].each do |kv| %>
+					<div> <a href="/projects/<%= kv[:id] %>"> <%= kv[:str] %> </a>
 				<% end %>
 				<% project[:parent].each do |str| %>
 					</div>

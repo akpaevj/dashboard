@@ -52,7 +52,7 @@ class DashboardAltController < ApplicationController
     path = []
     parent = project
     while !(parent.nil?)
-      path << parent.name + (path.empty? ? "" : "/")
+      path << { :str => parent.name + (path.empty? ? "" : "/"), :id => parent.id }
       parent = parent.parent
     end
     path.reverse
