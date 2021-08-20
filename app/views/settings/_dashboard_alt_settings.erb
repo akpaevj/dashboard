@@ -60,5 +60,11 @@
       <%= check_box_tag "settings[display_child_projects_tasks]", false, @settings['display_child_projects_tasks'] %>
     </td>
   </tr>
+  <tr>
+    <td> <%=l :project_denylist %> </th>
+    <td>
+      <%= text_field_tag "settings[project_denylist]", @settings['project_denylist'] %>
+    </td>
+  </tr>
   </tbody>
 </table>

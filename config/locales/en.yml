@@ -11,3 +11,4 @@ en:
   settings_generate_colors: "Generate colors"
   executor_not_set: "Not set"
   label_all: "All"
+  project_denylist: "Ignore projects (enter with , between names)"
