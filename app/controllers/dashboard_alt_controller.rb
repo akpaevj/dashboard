@@ -67,12 +67,28 @@ class DashboardAltController < ApplicationController
     Issue.visible.where(selector).map{ |i| i.updated_on }.max || DateTime.new(1970, 1,1)
   end
 
+  def has_children(project, include_closed)
+    items = project.issues
+    unless include_closed
+      items = items.open
+    end
+    unless @selected_status_id == -1
+      items = items.select{ |issue| issue.status_id == @selected_status_id }
+    end
+    items.length > 0
+  end
+
   def get_projects(show_sub_tasks)
     data = {}
 
     Project.visible.each do |item|
       path = get_parent(item)
-      if (path.length == 1 || show_sub_tasks) && item.issues.length > 0 && !@project_denylist.include?( item.identifier )
+      if (
+        (path.length == 1 || show_sub_tasks) && 
+        has_children(item, Setting.plugin_dashboard_alt['display_closed_statuses']) && 
+        !@project_denylist.include?( item.identifier ) &&
+        item.status == 1
+      )
         data[item.id] = {
           :name => item.name,
           :color => Setting.plugin_dashboard_alt["project_color_" + item.id.to_s],

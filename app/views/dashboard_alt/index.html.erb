@@ -17,11 +17,11 @@
 	</select>
 <% else %>
 	<div class="select_project_container">
-		<% @projects.each do |project_id, project| %>
-			<% if project_id == @selected_project_id %>
-				<div class="select_project_item select_project_item_selected" style="background-color: <%= project[:color] %>" data-id="<%= project_id %>"><%= project[:name] %></div>
+		<% @statuses.each do |status_id, status| %>
+			<% if status_id == @selected_status_id %>
+				<div class="select_project_item select_project_item_selected" style="background-color: <%= status[:color] %>" data-id="<%= status_id %>"><%= status[:name] %></div>
 			<% else %>
-				<div class="select_project_item" style="background-color: <%= project[:color] %>" data-id="<%= project_id %>"><%= project[:name] %></div>
+				<div class="select_project_item" style="background-color: <%= status[:color] %>" data-id="<%= status_id %>"><%= status[:name] %></div>
 			<% end %>
 		<% end %>
 	</div>
