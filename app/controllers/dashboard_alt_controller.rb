@@ -71,7 +71,7 @@ class DashboardAltController < ApplicationController
 
     Project.visible.each do |item|
       path = get_parent(item)
-      if path.length == 1 || show_sub_tasks
+      if (path.length == 1 || show_sub_tasks) && item.issues.length > 0
         data[item.id] = {
           :name => item.name,
           :color => Setting.plugin_dashboard_alt["project_color_" + item.id.to_s],
