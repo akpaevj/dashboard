@@ -7,7 +7,7 @@ class DashboardAltController < ApplicationController
     @selected_status_id  = params[:project_id].nil? ? -1 : params[:project_id].to_i
     show_sub_tasks = Setting.plugin_dashboard_alt['display_child_projects_tasks']
     @use_drag_and_drop = Setting.plugin_dashboard_alt['enable_drag_and_drop']
-    @project_denylist = Setting.plugin_dashboard_alt['project_denylist']
+    @project_denylist = Setting.plugin_dashboard_alt['project_denylist'].split(',').map! { |k| k.strip }
     @display_minimized_closed_issue_cards = Setting.plugin_dashboard_alt['display_closed_statuses'] ? Setting.plugin_dashboard_alt['display_minimized_closed_issue_cards'] : false
     @statuses = get_statuses
     @projects = get_projects(show_sub_tasks)
@@ -72,7 +72,7 @@ class DashboardAltController < ApplicationController
 
     Project.visible.each do |item|
       path = get_parent(item)
-      if (path.length == 1 || show_sub_tasks) && item.issues.length > 0
+      if (path.length == 1 || show_sub_tasks) && item.issues.length > 0 && !@project_denylist.include?( item.identifier )
         data[item.id] = {
           :name => item.name,
           :color => Setting.plugin_dashboard_alt["project_color_" + item.id.to_s],
