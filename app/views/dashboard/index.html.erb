@@ -39,7 +39,7 @@
 					<% project_name = @projects[issue[:project_id]][:name] %>
 					
 					
-					<% if issue[:executor] == params[:executor] %>
+					<% if issue[:executor] == @selected_executor || @selected_executor== -1 %>
 					<div class="issue_card" style="border-color: <%= project_color %>" data-id="<%= issue[:id] %>" onclick="goToIssue(<%= issue[:id] %>)">
 						<span class="issue_card_id"> <%= "#" + issue[:id].to_s %> </span>
 						<div class="issue_card_header">
