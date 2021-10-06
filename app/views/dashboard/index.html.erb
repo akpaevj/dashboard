@@ -33,7 +33,7 @@
 			<div class="status_column_header" style="border-bottom-color: <%= status[:color] %>">
 				<span> <%= status[:name] %> </span>
 			</div>
-			<div class="<%= status[:is_closed] && @display_minimized_closed_issue_cards) ? "status_column_closed_issues" : "status_column_issues" %>">
+			<div class="<%= status[:is_closed] && @display_minimized_closed_issue_cards ? "status_column_closed_issues" : "status_column_issues" %>">
 				<% @issues.select { |issue| issue[:status_id] == status_id }.each do |issue| %>
 					<% project_color = @projects[issue[:project_id]][:color] %>
 					<% project_name = @projects[issue[:project_id]][:name] %>
