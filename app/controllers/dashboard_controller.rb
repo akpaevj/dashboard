@@ -35,11 +35,13 @@ class DashboardController < ApplicationController
     data = {}
     items = Setting.plugin_dashboard['display_closed_statuses'] ? IssueStatus.sorted : IssueStatus.sorted.where('is_closed = false')
     items.each do |item|
-      data[item.id] = {
-        :name => item.name,
-        :color => Setting.plugin_dashboard["status_color_" + item.id.to_s],
-        :is_closed => item.is_closed
-      }
+      if Setting.plugin_dashboard["status_display_" + item.id.to_s]
+        data[item.id] = {
+          :name => item.name,
+          :color => Setting.plugin_dashboard["status_color_" + item.id.to_s],
+          :is_closed => item.is_closed
+        }
+      end
     end
     data
   end
@@ -51,10 +53,12 @@ class DashboardController < ApplicationController
     }}
 
     Project.visible.each do |item|
-      data[item.id] = {
-        :name => item.name,
-        :color => Setting.plugin_dashboard["project_color_" + item.id.to_s]
-      }
+      if Setting.plugin_dashboard["project_display_" + item.id.to_s]
+        data[item.id] = {
+          :name => item.name,
+          :color => Setting.plugin_dashboard["project_color_" + item.id.to_s]
+        }
+      end
     end
     data
   end
@@ -95,6 +99,11 @@ class DashboardController < ApplicationController
         :author => item.author.name(User::USER_FORMATS[:firstname_lastname]),
         :executor => item.assigned_to.nil? ? '' : item.assigned_to.name
       }
+    end
+    data.reverse_each do |item|
+      unless Setting.plugin_dashboard["project_display_" + item[:project_id].to_s]
+        data.delete(item)
+      end
     end
     data.sort_by { |item| item[:created_on] }
   end
