@@ -7,7 +7,8 @@ Available a moving of issue cards between statuses, going to the issue by clicki
 - Russian
 - English
 - Polish (thanks Wojtek Śmiałek)
-- Portuguese Brazil (thanks ![Fernando Hallberg](https://github.com/fernandohallberg))
+- Portuguese Brazil (thanks [Fernando Hallberg](https://github.com/fernandohallberg))
+- Croatian (thanks [Ivan Bratović](https://github.com/ivanbratovic))
 
 ### Features:  
 - Displaying tasks of child projects (configurable)
