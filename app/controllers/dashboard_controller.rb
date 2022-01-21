@@ -4,6 +4,7 @@ class DashboardController < ApplicationController
   def index
     @use_drop_down_menu = Setting.plugin_dashboard['use_drop_down_menu']
     @selected_project_id = params[:project_id].nil? ? -1 : params[:project_id].to_i
+    @selected_executor = params[:executor].nil? ? -1 : params[:executor].to_s
     show_sub_tasks = Setting.plugin_dashboard['display_child_projects_tasks']
     @show_project_badge = @selected_project_id == -1 || @selected_project_id != -1 && show_sub_tasks
     @use_drag_and_drop = Setting.plugin_dashboard['enable_drag_and_drop']
