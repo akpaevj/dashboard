@@ -37,7 +37,7 @@
 				<% @issues.select { |issue| issue[:status_id] == status_id }.each do |issue| %>
 					<% project_color = @projects[issue[:project_id]][:color] %>
 					<% project_name = @projects[issue[:project_id]][:name] %>
-					<div class="issue_card" style="border-color: <%= project_color %>" data-id="<%= issue[:id] %>" onclick="goToIssue(<%= issue[:id] %>)">
+					<div class="issue_card issue_card_priority_<%= issue[:priority] %>" style="border-color: <%= project_color %>" data-id="<%= issue[:id] %>" onclick="goToIssue(<%= issue[:id] %>)">
 						<span class="issue_card_id"> <%= "#" + issue[:id].to_s %> </span>
 						<div class="issue_card_header">
 							<span class="issue_card_header_date"><%= I18n.l(issue[:created_on], format: :long) %></span>

@@ -89,6 +89,7 @@ class DashboardController < ApplicationController
       {
         :id => item.id,
         :subject => item.subject,
+        :priority => item.priority,
         :status_id => item.status.id,
         :project_id => item.project.id,
         :created_on => item.created_on,

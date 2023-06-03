@@ -198,3 +198,31 @@
 .status_column_issues .issue_card .issue_card_id {
     display: none;
 }
+
+/* priority color border on the left side of the issue */
+/* used same colors from https: //github.com/jgraichen/redmine_dashboard */
+.status_column_issues .issue_card {
+	--border-color: transparent;
+	border-left: 5px solid black;
+	border-color: var(--border-color);
+}
+
+.status_column_issues .issue_card.issue_card_priority_Low {
+	--border-color: rgb(170, 170, 170);
+}
+
+.status_column_issues .issue_card.issue_card_priority_Normal {
+	--border-color: rgb(102, 187, 102);
+}
+
+.status_column_issues .issue_card.issue_card_priority_High {
+	--border-color: rgb(255, 165, 0);
+}
+
+.status_column_issues .issue_card.issue_card_priority_Urgent {
+	--border-color: rgb(255, 0, 0);
+}
+
+.status_column_issues .issue_card.issue_card_priority_Immediate {
+	--border-color: rgb(0, 0, 0);
+}
