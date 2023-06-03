@@ -11,3 +11,5 @@ pl:
   settings_generate_colors: "Wygeneruj kolory"
   executor_not_set: "Nie przydzielono"
   label_all: "Wszystkie"
+  assigned_to_me: "Przydzielony do mnie"
+  not_assigned: "Nie przypisano"

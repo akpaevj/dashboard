@@ -20,11 +20,13 @@ function goToIssue(id) {
 }
 
 function chooseProject(projectId) {
+    const params = new URLSearchParams(window.location.search);
     if (projectId == "-1") {
-        location.search = "";
+        params.delete('project_id');
     } else {
-        location.search = `project_id=${projectId}`;   
+        params.set('project_id', projectId);
     }
+    location.search = params.toString();
 }
 
 async function setIssueStatus(issueId, statusId, item, oldContainer, oldIndex) { 
@@ -41,6 +43,26 @@ function init(useDragAndDrop) {
         item.addEventListener('click', function() {
             chooseProject(this.dataset.id);
         })
+    });
+
+    document.querySelector('#assigned_to_me')?.addEventListener('change', function () {
+        const params = new URLSearchParams(window.location.search);
+        if (this.checked) {
+            params.set('assigned_to', "me");
+        }else{
+            params.delete('assigned_to');
+        }
+        location.search = params.toString();
+    });
+
+    document.querySelector('#not_assigned')?.addEventListener('change', function () {
+        const params = new URLSearchParams(window.location.search);
+        if (this.checked) {
+            params.set('assigned_to', "no_one");
+        }else{
+            params.delete('assigned_to');
+        }
+        location.search = params.toString();
     });
 
     const projectsSelector = document.querySelector('#select_project');

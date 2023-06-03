@@ -11,3 +11,5 @@ ru:
   settings_generate_colors: "Сгенерировать цвета"
   executor_not_set: "Не установлен"
   label_all: "Все"
+  assigned_to_me: "Назначено мне"
+  not_assigned: "Не назначено"

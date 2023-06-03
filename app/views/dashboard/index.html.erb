@@ -15,6 +15,12 @@
 			<% end %>
 		<% end %>
 	</select>
+
+	<input type="checkbox" id="assigned_to_me" name="assigned_to_me" <%= @assigned_to == 'me' ? 'checked' : '' %>/>
+	<label for="assigned_to_me"><%=l :assigned_to_me %></label>
+
+	<input type="checkbox" id="not_assigned" name="not_assigned" <%= @assigned_to == 'no_one' ? 'checked' : '' %>/>
+	<label for="not_assigned"><%=l :not_assigned %></label>
 <% else %>
 	<div class="select_project_container">
 		<% @projects.each do |project_id, project| %>
