@@ -51,7 +51,7 @@
 								<div class="issue_card_header_project" style="background-color: <%= project_color %>"><%= project_name %></div>
 							<% end %>
 						</div>
-						<span class="issue_card_title"> <%= issue[:subject] %> </span>
+						<span class="issue_card_title"> <%= '#' + issue[:id].to_s %> <%= issue[:subject] %> </span>
 						<span class="issue_card_author"><i class="bi bi-person"></i> <%= issue[:author] %> </span>
 						<% if issue[:executor] == '' || issue[:executor].nil? %>
 							<span class="issue_card_executor_not_set"><i class="bi bi-hammer"></i> <%=l :executor_not_set %></span>
