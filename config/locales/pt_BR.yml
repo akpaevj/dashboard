@@ -1,0 +1,13 @@
+pt_BR:
+  top_menu_item_title: "Dashboard"
+  settings_header_statuses: "Cores das Situações"
+  settings_header_projects: "Cores dos Projetos"
+  settings_header_other: "Outro"
+  settings_use_drop_down_menu: 'Use um menu drop-down para escolha de projeto'
+  settings_display_closed_statuses: 'Mostrar tarefas com situação "FECHADO"'
+  settings_display_child_projects_tasks: 'Mostrar tarefas filhas dos projetos'
+  settings_display_minimized_closed_issue_cards: 'Mostrar minizados os cartões de tarefas fechadas'
+  settings_enable_drag_and_drop: 'Mudar situação com "Drag and drop"'
+  settings_generate_colors: "Gerar as cores"
+  executor_not_set: "Não definido"
+  label_all: "Todos"

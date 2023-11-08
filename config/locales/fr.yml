@@ -1,0 +1,13 @@
+fr:
+  top_menu_item_title: "Tableau de bord"
+  settings_header_statuses: "Couleurs des status"
+  settings_header_projects: "Couleurs des projets"
+  settings_header_other: "Autre"
+  settings_use_drop_down_menu: 'Utiliser le menu déroulant pour choisir le projet'
+  settings_display_closed_statuses: 'Afficher le status « closed »'
+  settings_display_child_projects_tasks: 'Afficher les tâches de sous-projets'
+  settings_display_minimized_closed_issue_cards: 'Afficher les cartes « closed » en minimisé'
+  settings_enable_drag_and_drop: 'Changer de status par glisser-déposer'
+  settings_generate_colors: "Générer les couleurs"
+  executor_not_set: "Pas encore défini"
+  label_all: "Tous"
