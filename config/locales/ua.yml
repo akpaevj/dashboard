@@ -1,0 +1,13 @@
+ua:
+  top_menu_item_title: "Панель завдань"
+  settings_header_statuses: "Кольори статусів"
+  settings_header_projects: "Кольори проектів"
+  settings_header_other: "Різне"
+  settings_use_drop_down_menu: 'Використовувати випадаючий список для вибору проекту'
+  settings_display_closed_statuses: 'Відображати "зачинені" статуси'
+  settings_display_child_projects_tasks: 'Відображати завдання дочірніх проектів'
+  settings_display_minimized_closed_issue_cards: 'Відображати згорнуті картки "закритих" завдань'
+  settings_enable_drag_and_drop: '"Drag and drop" зміна статусу'
+  settings_generate_colors: "Згенерувати кольори"
+  executor_not_set: "Не встановлений"
+  label_all: "Все"
