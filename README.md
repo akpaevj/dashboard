@@ -6,6 +6,7 @@ Available a moving of issue cards between statuses, going to the issue by clicki
 #### Supported languages:
 - Russian
 - English
+- Ukrainian (thanks [Pavlo Vykhrov](https://github.com/Rosgard2012))
 - Polish (thanks Wojtek Śmiałek)
 - Portuguese Brazil (thanks [Fernando Hallberg](https://github.com/fernandohallberg))
 - Croatian (thanks [Ivan Bratović](https://github.com/ivanbratovic))
