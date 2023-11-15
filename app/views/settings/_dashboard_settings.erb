@@ -66,5 +66,11 @@
       <%= check_box_tag "settings[display_child_projects_tasks]", false, @settings['display_child_projects_tasks'] %>
     </td>
   </tr>
+  <tr>
+    <td> <%=l :settings_display_open_projects_only %> </th>
+    <td>
+      <%= check_box_tag "settings[display_open_projects_only]", false, @settings['display_open_projects_only'] %>
+    </td>
+  </tr>
   </tbody>
 </table>
