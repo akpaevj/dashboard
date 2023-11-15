@@ -8,6 +8,7 @@ class DashboardController < ApplicationController
     @show_project_badge = @selected_project_id == -1 || @selected_project_id != -1 && show_sub_tasks
     @use_drag_and_drop = Setting.plugin_dashboard['enable_drag_and_drop']
     @display_minimized_closed_issue_cards = Setting.plugin_dashboard['display_closed_statuses'] ? Setting.plugin_dashboard['display_minimized_closed_issue_cards'] : false
+    @display_open_projects_only = Setting.plugin_dashboard['display_open_projects_only'] ? Setting.plugin_dashboard['display_open_projects_only'] : false
     @statuses = get_statuses
     @projects = get_projects
     @issues = get_issues(@selected_project_id, show_sub_tasks)
@@ -47,14 +48,18 @@ class DashboardController < ApplicationController
   def get_projects
     data = {-1 => {
       :name => l(:label_all),
-      :color => '#4ec7ff'
+      :color => '#4ec7ff',
+      :status => 0
     }}
 
-    Project.visible.each do |item|
+    projcets = Setting.plugin_dashboard['display_open_projects_only'] ? Project.visible.where(:projects => {:status => 1}) : Project.visible
+
+    projcets.each do |item|
       data[item.id] = {
         :name => item.name,
-        :color => Setting.plugin_dashboard["project_color_" + item.id.to_s]
-      }
+        :color => Setting.plugin_dashboard["project_color_" + item.id.to_s],
+        :status => item.status
+      }      
     end
     data
   end
@@ -78,9 +83,11 @@ class DashboardController < ApplicationController
       project = Project.find(project_id)
       add_children_ids(id_array, project)
     end
-
-    items = id_array.empty? ? Issue.visible : Issue.visible.where(:projects => {:id => id_array})
-
+    
+    items = id_array.empty? ? Issue.visible: Issue.visible.where(:projects => {:id => id_array})
+    
+    items = Setting.plugin_dashboard['display_open_projects_only'] ? items.where(:projects => {:status => 1}) : items
+    
     unless Setting.plugin_dashboard['display_closed_statuses']
       items = items.open
     end

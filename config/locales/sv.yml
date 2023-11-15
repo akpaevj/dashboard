@@ -3,9 +3,10 @@ sv:
   settings_header_statuses: "Statusfärger"
   settings_header_projects: "Projektfärger"
   settings_header_other: "Övrigt"
-  settings_use_drop_down_menu: 'Använd drop-down-meny för att välja projekt'
+  settings_use_drop_down_menu: "Använd drop-down-meny för att välja projekt"
   settings_display_closed_statuses: 'Visa "stängda"'
-  settings_display_child_projects_tasks: 'Visa underprojekts uppgifter'
+  settings_display_child_projects_tasks: "Visa underprojekts uppgifter"
+  settings_display_open_projects_only: 'Visa endast projekt med status "öppen"'
   settings_display_minimized_closed_issue_cards: 'Visa "stängda" kort minimerade'
   settings_enable_drag_and_drop: '"Drag-och-Släpp" status-hantering'
   settings_generate_colors: "Skapa färger"
