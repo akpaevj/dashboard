@@ -4,13 +4,14 @@ class DashboardController < ApplicationController
   def index
     @use_drop_down_menu = Setting.plugin_dashboard['use_drop_down_menu']
     @selected_project_id = params[:project_id].nil? ? -1 : params[:project_id].to_i
+    @assigned_to = params[:assigned_to].nil? ? "" : params[:assigned_to]
     show_sub_tasks = Setting.plugin_dashboard['display_child_projects_tasks']
     @show_project_badge = @selected_project_id == -1 || @selected_project_id != -1 && show_sub_tasks
     @use_drag_and_drop = Setting.plugin_dashboard['enable_drag_and_drop']
     @display_minimized_closed_issue_cards = Setting.plugin_dashboard['display_closed_statuses'] ? Setting.plugin_dashboard['display_minimized_closed_issue_cards'] : false
     @statuses = get_statuses
     @projects = get_projects
-    @issues = get_issues(@selected_project_id, show_sub_tasks)
+    @issues = get_issues(@selected_project_id, show_sub_tasks, @assigned_to)
   end
 
   def set_issue_status
@@ -66,7 +67,7 @@ class DashboardController < ApplicationController
     end
   end
 
-  def get_issues(project_id, with_sub_tasks)
+  def get_issues(project_id, with_sub_tasks, assigned_to)
     id_array = []
 
     if project_id != -1
@@ -81,6 +82,12 @@ class DashboardController < ApplicationController
 
     items = id_array.empty? ? Issue.visible : Issue.visible.where(:projects => {:id => id_array})
 
+    if (assigned_to == "me")
+      items = items.visible.where(assigned_to_id: User.current.id)
+    elsif (assigned_to == "no_one")
+      items = items.visible.where(assigned_to_id: nil)
+    end
+
     unless Setting.plugin_dashboard['display_closed_statuses']
       items = items.open
     end
@@ -89,6 +96,7 @@ class DashboardController < ApplicationController
       {
         :id => item.id,
         :subject => item.subject,
+        :priority => item.priority,
         :status_id => item.status.id,
         :project_id => item.project.id,
         :created_on => item.created_on,

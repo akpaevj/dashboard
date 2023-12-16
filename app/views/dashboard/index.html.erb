@@ -15,6 +15,12 @@
 			<% end %>
 		<% end %>
 	</select>
+
+	<input type="checkbox" id="assigned_to_me" name="assigned_to_me" <%= @assigned_to == 'me' ? 'checked' : '' %>/>
+	<label for="assigned_to_me"><%=l :assigned_to_me %></label>
+
+	<input type="checkbox" id="not_assigned" name="not_assigned" <%= @assigned_to == 'no_one' ? 'checked' : '' %>/>
+	<label for="not_assigned"><%=l :not_assigned %></label>
 <% else %>
 	<div class="select_project_container">
 		<% @projects.each do |project_id, project| %>
@@ -37,7 +43,7 @@
 				<% @issues.select { |issue| issue[:status_id] == status_id }.each do |issue| %>
 					<% project_color = @projects[issue[:project_id]][:color] %>
 					<% project_name = @projects[issue[:project_id]][:name] %>
-					<div class="issue_card" style="border-color: <%= project_color %>" data-id="<%= issue[:id] %>" onclick="goToIssue(<%= issue[:id] %>)">
+					<div class="issue_card issue_card_priority_<%= issue[:priority] %>" style="border-color: <%= project_color %>" data-id="<%= issue[:id] %>" onclick="goToIssue(<%= issue[:id] %>)">
 						<span class="issue_card_id"> <%= "#" + issue[:id].to_s %> </span>
 						<div class="issue_card_header">
 							<span class="issue_card_header_date"><%= I18n.l(issue[:created_on], format: :long) %></span>
@@ -45,7 +51,7 @@
 								<div class="issue_card_header_project" style="background-color: <%= project_color %>"><%= project_name %></div>
 							<% end %>
 						</div>
-						<span class="issue_card_title"> <%= issue[:subject] %> </span>
+						<span class="issue_card_title"> <%= '#' + issue[:id].to_s %> <%= issue[:subject] %> </span>
 						<span class="issue_card_author"><i class="bi bi-person"></i> <%= issue[:author] %> </span>
 						<% if issue[:executor] == '' || issue[:executor].nil? %>
 							<span class="issue_card_executor_not_set"><i class="bi bi-hammer"></i> <%=l :executor_not_set %></span>

@@ -11,3 +11,5 @@ hr:
   settings_generate_colors: "Generiraj boje"
   executor_not_set: "Nije postavljen"
   label_all: "Svi"
+  assigned_to_me: "Dodijeljen meni"
+  not_assigned: "Nije dodijeljeno"

@@ -11,3 +11,5 @@ en:
   settings_generate_colors: "Generate colors"
   executor_not_set: "Not set"
   label_all: "All"
+  assigned_to_me: "Assigned to me"
+  not_assigned: "Not assigned"

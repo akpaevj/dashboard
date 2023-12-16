@@ -11,3 +11,5 @@ pt_BR:
   settings_generate_colors: "Gerar as cores"
   executor_not_set: "Não definido"
   label_all: "Todos"
+  assigned_to_me: "Atribuído a mim"
+  not_assigned: "Não atribuído"
