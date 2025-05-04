@@ -6,25 +6,35 @@
   <tbody>
   <tr>
     <th colspan="2"> <%=l :settings_header_statuses %> </td>
+    <td> Display </td>
   </tr>
   <% IssueStatus.sorted().each do |status| %>
-    <% property_name = "status_color_" + status.id.to_s %>
+    <% property_color = "status_color_" + status.id.to_s %>
+    <% property_display = "status_display_" + status.id.to_s %>
     <tr>
       <td> <%= status.name %> </th>
       <td>
-        <input type="color" id="settings_<%= property_name %>" value="<%= settings[property_name] %>" name="settings[<%= property_name %>]">
+        <input type="color" id="settings_<%= property_color %>" value="<%= settings[property_color] %>" name="settings[<%= property_color %>]">
+      </td>
+      <td>
+        <%= check_box_tag "settings[" + property_display + "]", true, @settings[property_display] %>
       </td>
     </tr>
   <% end %>
   <tr>
     <th colspan="2"> <%=l :settings_header_projects %> </td>
+    <td> Display </td>
   </tr>
   <% Project.where('status = 1').each do |project| %>
-    <% property_name = "project_color_" + project.id.to_s %>
+    <% property_color = "project_color_" + project.id.to_s %>
+    <% property_display = "project_display_" + project.id.to_s %>
     <tr>
       <td> <%= project.name %> </th>
       <td>
-        <input type="color" id="settings_<%= property_name %>" value="<%= settings[property_name] %>" name="settings[<%= property_name %>]">
+        <input type="color" id="settings_<%= property_color %>" value="<%= settings[property_color] %>" name="settings[<%= property_color %>]">
+      </td>
+      <td>
+        <%= check_box_tag "settings[" + property_display + "]", true, @settings[property_display] %>
       </td>
     </tr>
   <% end %>
